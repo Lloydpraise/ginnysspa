@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ginnys Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-hero: #e8d0bd; /* Warm beige from the image */
+            --bg-page: #f9f7f4;
+            --accent-green: #5a825e; /* Leafy green */
+            --accent-light-green: #c0dec8; /* Light green card */
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --card-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(90, 130, 94, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(90, 130, 94, 0.4);
+        }
+
+        /* 1. Header & Navigation */
+        header {
+            background-color: var(--bg-hero);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* 2. Hero Section */
+        .hero {
+            display: flex;
+            background-color: var(--bg-hero);
+            min-height: 80vh;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding: 4rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            max-width: 450px;
+        }
+
+        .features-container {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 1.5rem;
+            border-radius: 16px;
+            flex: 1;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            backdrop-filter: blur(5px);
+        }
+
+        .feature-box h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        .feature-box ul li {
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-box ul li::before {
+            content: '•';
+            margin-right: 8px;
+        }
+
+        .hero-image-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        /* 3. Services Navigation Tabs */
+        .services-nav {
+            padding: 3rem 5%;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .services-nav span {
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding-bottom: 5px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+
+        .services-nav span:hover {
+            border-bottom: 2px solid var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* Container for remaining content */
+        .main-container {
+            padding: 0 5% 5rem 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* 4. The Experience Cards */
+        .experience-split {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card-image-left {
+            flex: 1;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+            min-height: 400px;
+        }
+
+        .card-image-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-text-right {
+            flex: 1;
+            background-color: var(--accent-light-green);
+            border-radius: var(--card-radius);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+        }
+
+        .card-text-right h2 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-text-right p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .selection-menu select {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.5);
+            font-family: inherit;
+            margin-bottom: 1rem;
+            outline: none;
+        }
+
+        /* 5. Service Grid */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mini-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: var(--card-radius);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .mini-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .mini-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mini-card p {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .explore-link {
+            font-weight: 500;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* 6. Large CTA Section */
+        .cta-section {
+            background-color: var(--bg-hero);
+            border-radius: var(--card-radius);
+            padding: 5rem 10%;
+            text-align: center;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2.5rem auto;
+            color: var(--text-dark);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            .card-text-right h2 { font-size: 2.5rem; }
+            .experience-split { flex-direction: column; }
+            .card-image-left { min-height: 300px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Simple hide for mobile, would need JS for hamburger */
+            
+            /* Crucial: Image comes first on mobile for Hero */
+            .hero { flex-direction: column; }
+            .hero-image-container { order: -1; height: 350px; flex: none; }
+            .hero-content { order: 0; padding: 2rem 5%; }
+            
+            .hero-content h1 { font-size: 2.8rem; }
+            .features-container { flex-direction: column; }
+            
+            .card-text-right { padding: 2rem; }
+            .cta-section { padding: 3rem 5%; }
+            .cta-section h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">Ginnys Spa</div>
+        <nav class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Our Premises</a>
+            <a href="#">Our Services</a>
+            <a href="#">Gallery</a>
+        </nav>
+        <button class="btn">Book Session</button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Explore A Whole New Experience, For You...</h1>
+            <p>This is not your regular spa—it's a sanctuary where time slows down. Relax your mind while we curate your beauty from the inside out.</p>
+            
+            <div class="features-container">
+                <div class="feature-box" style="background-color: var(--accent-light-green);">
+                    <h4>Pure</h4>
+                    <ul>
+                        <li>Organic Oils</li>
+                        <li>Toxin Free</li>
+                        <li>Skin First</li>
+                    </ul>
+                </div>
+                <div class="feature-box" style="background: rgba(255,255,255,0.8);">
+                    <h4>Quiet</h4>
+                    <ul>
+                        <li>No Phones</li>
+                        <li>Soft Echoes</li>
+                        <li>Total Peace</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2.5rem;">
+                <button class="btn">Book Session Now</button>
+            </div>
+        </div>
+        
+        <div class="hero-image-container">
+            <img src="images/heroimage.png" alt="Relaxing Spa Massage" class="hero-image">
+        </div>
+    </section>
+
+    <nav class="services-nav">
+        <span>Massages</span>
+        <span>Pedicure</span>
+        <span>Manicure</span>
+        <span>Barbers</span>
+        <span>Salon</span>
+    </nav>
+
+    <div class="main-container">
+        <div class="experience-split">
+            <div class="card-image-left">
+                <img src="images/massage.jpg" alt="Spa Products">
+            </div>
+            <div class="card-text-right">
+                <h2>The Art of Stillness</h2>
+                <p>It’s more than a massage; it’s the smell of fresh lavender, the weight of the world leaving your shoulders, and the healing touch of silence.</p>
+                
+                <div class="selection-menu">
+                    <select>
+                        <option>Mini Massage</option>
+                        <option>Solo Massage</option>
+                        <option>Couple Massage</option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn">Select Preference</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="experience-split">
+            <div class="card-text-right" style="background-color: #e6eef0;">
+                <h2>Refined Crown & Care</h2>
+                <p>From the rhythmic clip of the shears to the soothing scalp treatment, our hair and nail station is designed for those who value detail and dignity.</p>
+                <div>
+                    <button class="btn">View Styles</button>
+                </div>
+            </div>
+            <div class="card-image-left">
+                <img src="images/nails.jpg" alt="Hair and Nails">
+            </div>
+        </div>
+
+        <div class="service-grid">
+            <div class="mini-card">
+                <h3>Aromatherapy</h3>
+                <p>Essential oils for the soul.</p>
+                <a href="#" class="explore-link">Explore ➔</a>
+            </div>
+            <div class="mini-card">
+                <h3>Skin Rituals</h3>
+                <p>Deep cleansing & healthy glow.</p>
+                <a href="#" class="explore-link">Explore ➔</a>
+            </div>
+            <div class="mini-card">
+                <h3>The Barbery</h3>
+                <p>Precision cuts & hot towels.</p>
+                <a href="#" class="explore-link">Explore ➔</a>
+            </div>
+            <div class="mini-card">
+                <h3>Nail Spa</h3>
+                <p>Luxury Mani-Pedi sets.</p>
+                <a href="#" class="explore-link">Explore ➔</a>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Switch Off The World.</h2>
+            <p>Our premises are tucked away from the city noise, ensuring your session is wrapped in absolute quiet. No traffic, no rush—just the gentle hum of serenity.</p>
+            <button class="btn">Secure Your Peace of Mind</button>
+        </div>
+    </div>
+
+</body>
+</html>
