@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Ginnys Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-hero: #e8d0bd; 
+            --bg-page: #f9f7f4;
+            --accent-green: #5a825e; 
+            --accent-light-green: #c0dec8; 
+            --text-dark: #1a1a1a;
+            --text-light: #555;
+            --card-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--bg-hero);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(90, 130, 94, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(90, 130, 94, 0.4);
+        }
+
+        /* Catalogue Cover Header */
+        .catalogue-cover {
+            background-color: var(--bg-hero);
+            text-align: center;
+            padding: 6rem 5% 4rem 5%;
+            margin-bottom: 2rem;
+        }
+
+        .catalogue-cover h1 {
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        /* Sticky Service Sub-Tabs */
+        .services-anchor-nav {
+            position: sticky;
+            top: 76px;
+            background: rgba(249, 247, 244, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 999;
+            margin-bottom: 4rem;
+        }
+
+        .services-anchor-nav a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            color: var(--text-light);
+        }
+
+        .services-anchor-nav a:hover {
+            border-bottom: 2px solid var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        /* Layout Grid and Media Showcases */
+        .catalogue-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 5% 6rem 5%;
+        }
+
+        .catalogue-section {
+            margin-bottom: 6rem;
+            scroll-margin-top: 160px;
+        }
+
+        .section-intro-block {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3.5rem;
+            background: linear-gradient(135deg, #fbe5e7 0%, #ffffff 100%);
+            padding: 2.5rem;
+            border-radius: var(--card-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+        }
+
+        .section-text {
+            flex: 1.2;
+        }
+
+        .section-image-wrapper {
+            flex: 0.8;
+            height: 240px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .section-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .section-image-wrapper:hover img {
+            transform: scale(1.05);
+        }
+
+        .section-tagline {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-green);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-intro-block h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.8rem;
+        }
+
+        /* Editorial Pricelist Grid */
+        .editorial-menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 4rem;
+            row-gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .menu-item {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px dashed rgba(0,0,0,0.08);
+            padding-bottom: 1rem;
+        }
+
+        .menu-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .menu-item-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .menu-item-price {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--accent-green);
+            white-space: nowrap;
+        }
+
+        .catalogue-footer {
+            text-align: center;
+            border-top: 1px solid rgba(0,0,0,0.08);
+            padding-top: 3rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        @media (max-width: 992px) {
+            .editorial-menu-grid { grid-template-columns: 1fr; row-gap: 1.5rem; }
+            .section-intro-block { flex-direction: column; gap: 2rem; padding: 2rem; }
+            .section-image-wrapper { width: 100%; height: 260px; }
+            .catalogue-cover h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">Ginnys Spa</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="premise.html">Our Premises</a>
+            <a href="services.html" style="color: var(--accent-green); font-weight: 600;">Our Services</a>
+            <a href="gallery.html">Gallery</a>
+        </nav>
+        <button class="btn">Book Session</button>
+    </header>
+
+    <div class="catalogue-cover">
+        <p style="text-transform: uppercase; letter-spacing: 3px; font-size: 0.85rem; margin-bottom: 0.5rem; font-weight: 600;">Ginny's Spa Experience</p>
+        <h1>Our Menu & Price Guide</h1>
+    </div>
+
+    <div class="services-anchor-nav">
+        <a href="#barber">Barber Services</a>
+        <a href="#haircare">Hair Care & Braiding</a>
+        <a href="#texturizing">Relaxing & Texturizing</a>
+        <a href="#treatments">Hair Treatments</a>
+        <a href="#deep-treatment">Deep Treatment</a>
+    </div>
+
+    <div class="catalogue-container">
+
+        <section class="catalogue-section" id="barber">
+            <div class="section-intro-block">
+                <div class="section-text">
+                    <span class="section-tagline">Grooming & Style</span>
+                    <h2>Barber Services</h2>
+                    <p style="color: var(--text-light);">Precision cutting, clean shaves, and sharp styling designed for modern presentation and care.</p>
+                </div>
+                <div class="section-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Premium Barber Grooming Service at Ginny's Spa">
+                </div>
+            </div>
+            <div class="editorial-menu-grid">
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mens Haircut</span><span class="menu-item-price">Ksh 800.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mens Haircut & Dye</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Caucasian Mens Haircut</span><span class="menu-item-price">Ksh 1,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Beard Trim Only</span><span class="menu-item-price">Ksh 400.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Beard Cut & Tint</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Hair Line Only</span><span class="menu-item-price">Ksh 500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Hair Cut for Children</span><span class="menu-item-price">Ksh 500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Colored Hair Dye</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Grey Hair reduction | Black Dye</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Ladies Cut</span><span class="menu-item-price">Ksh 600.00</span></div></div>
+                <div class="menu-item" style="border: none;"><div class="menu-item-row"><span class="menu-item-name">Ladies Fresh Cut</span><span class="menu-item-price">Ksh 1,500.00</span></div></div>
+            </div>
+        </section>
+
+        <section class="catalogue-section" id="haircare">
+            <div class="section-intro-block">
+                <div class="section-text">
+                    <span class="section-tagline">Artisanal Braiding & Coiling</span>
+                    <h2>Hair Care</h2>
+                    <p style="color: var(--text-light);">Professional styling from protective protective locks and neat parting lines to specialized braids and twists.</p>
+                </div>
+                <div class="section-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1589156280159-27698a70f29e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="A lady with neatly done braids">
+                </div>
+            </div>
+            <div class="editorial-menu-grid">
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Undo Lines</span><span class="menu-item-price">Ksh 500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Undo Medium Braids</span><span class="menu-item-price">Ksh 700.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Undo Small Braids</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Wash & Blow Dry | Set</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Flat Iron</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Edge Trim</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Braid Twist <small style="color: var(--text-light); font-size: 0.8rem;">[Based on Volume & Length]</small></span><span class="menu-item-price">Ksh 2,500 - 4,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Knotless Braids</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Knotless Goddess Braids</span><span class="menu-item-price">Ksh 3,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Natural Hair Mini Twist</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Small Box Braids</span><span class="menu-item-price">Ksh 3,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Medium Box Braids</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Large Box Braids</span><span class="menu-item-price">Ksh 2,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Drop Lines with Braids</span><span class="menu-item-price">Ksh 2,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Lines & Cornrows</span><span class="menu-item-price">Ksh 1,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Twist Outs</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Ghanian Lines</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+                <div class="menu-item" style="border: none;"><div class="menu-item-row"><span class="menu-item-name">Passion & Spring</span><span class="menu-item-price">Ksh 2,500.00</span></div></div>
+            </div>
+        </section>
+
+        <section class="catalogue-section" id="texturizing">
+            <div class="section-intro-block">
+                <div class="section-text">
+                    <span class="section-tagline">Sleek Flow & Texture</span>
+                    <h2>Relaxing & Texturizing</h2>
+                    <p style="color: var(--text-light);">Premium texturizing solutions paired with restorative post-care structural treatments.</p>
+                </div>
+                <div class="section-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="A lady undergoing silk press treatment">
+                </div>
+            </div>
+            <div class="editorial-menu-grid">
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mizani Relaxer <small style="color: var(--text-light); font-size: 0.8rem;">[Plus Treatment]</small></span><span class="menu-item-price">Ksh 8,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mizani Retouch <small style="color: var(--text-light); font-size: 0.8rem;">[Plus Treatment]</small></span><span class="menu-item-price">Ksh 8,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mizani Fresh retouch <small style="color: var(--text-light); font-size: 0.8rem;">[Treatment]</small></span><span class="menu-item-price">Ksh 8,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Dark & Lovely Relax</span><span class="menu-item-price">Ksh 3,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Beautiful Beginning Relax</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item" style="border: none;"><div class="menu-item-row"><span class="menu-item-name">Mega Growth Relax</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+            </div>
+        </section>
+
+        <section class="catalogue-section" id="treatments">
+            <div class="section-intro-block">
+                <div class="section-text">
+                    <span class="section-tagline">Follicle Nourishment</span>
+                    <h2>Hair Treatments</h2>
+                    <p style="color: var(--text-light);">Deep structural hydration and advanced root repair utilizing globally trusted laboratory formulas.</p>
+                </div>
+                <div class="section-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="A lady's hair being washed with treatment">
+                </div>
+            </div>
+            <div class="editorial-menu-grid">
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mizani Treatment</span><span class="menu-item-price">Ksh 3,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mizani Miracle Leave in Treatment</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Mikalla Treatment</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Leave in Treatment</span><span class="menu-item-price">Ksh 1,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">L'Oreal Absolute M. Treatment</span><span class="menu-item-price">Ksh 4,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">L'Oreal Scalp Advanced treatment</span><span class="menu-item-price">Ksh 3,500.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Cantu</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Auntie Jackies</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">African Pride</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item" style="border: none;"><div class="menu-item-row"><span class="menu-item-name">Crème of Nature</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+            </div>
+        </section>
+
+        <section class="catalogue-section" id="deep-treatment">
+            <div class="section-intro-block">
+                <div class="section-text">
+                    <span class="section-tagline">Core Structural Repair</span>
+                    <h2>Deep Treatment</h2>
+                    <p style="color: var(--text-light);">Advanced thermal structural repair and protein rebuild services to return high elasticity and brilliant natural luster to damaged hair matrices.</p>
+                </div>
+                <div class="section-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="A lady being applied deep hair mask treatment">
+                </div>
+            </div>
+            <div class="editorial-menu-grid">
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Keratin</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Hair Mayonnaise</span><span class="menu-item-price">Ksh 3,000.00</span></div></div>
+                <div class="menu-item"><div class="menu-item-row"><span class="menu-item-name">Genus Keratin Treatment</span><span class="menu-item-price">Ksh 2,500.00</span></div></div>
+                <div class="menu-item" style="border: none;"><div class="menu-item-row"><span class="menu-item-name">Genus Garlic Treatment</span><span class="menu-item-price">Ksh 2,000.00</span></div></div>
+            </div>
+        </section>
+
+        <div class="catalogue-footer">
+            <p class="brand" style="font-size: 1.4rem; margin-bottom: 0.5rem;">Ginnys Spa Kenya</p>
+            <p>Westlands, Nairobi, Kenya • Secure your appointment window today.</p>
+        </div>
+
+    </div>
+    <script src="js/booking.js"></script>
+
+</body>
+</html>

@@ -6,17 +6,18 @@
     <title>Ginnys Spa</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-hero: #e8d0bd; /* Warm beige from the image */
+            --bg-hero: #e8d0bd; 
             --bg-page: #f9f7f4;
-            --accent-green: #5a825e; /* Leafy green */
-            --accent-light-green: #c0dec8; /* Light green card */
+            --accent-green: #5a825e; 
+            --accent-light-green: #c0dec8; 
             --text-dark: #1a1a1a;
-            --text-light: #555;
+            --text-light: #666;
             --card-radius: 20px;
+            --premium-pink: #fbe5e7;
         }
 
         * {
@@ -49,22 +50,24 @@
         .btn {
             background-color: var(--accent-green);
             color: #fff;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 30px;
             border: none;
             font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
             display: inline-block;
-            box-shadow: 0 4px 10px rgba(90, 130, 94, 0.3);
+            box-shadow: 0 4px 12px rgba(90, 130, 94, 0.2);
         }
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(90, 130, 94, 0.4);
+            box-shadow: 0 8px 20px rgba(90, 130, 94, 0.35);
         }
 
-        /* 1. Header & Navigation */
+        /* Header & Navigation */
         header {
             background-color: var(--bg-hero);
             padding: 1.5rem 5%;
@@ -76,6 +79,7 @@
         .brand {
             font-size: 1.8rem;
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
@@ -85,7 +89,12 @@
             font-weight: 500;
         }
 
-        /* 2. Hero Section */
+        .nav-links a:hover {
+            color: var(--accent-green);
+            transition: color 0.2s;
+        }
+
+        /* Hero Section */
         .hero {
             display: flex;
             background-color: var(--bg-hero);
@@ -111,6 +120,7 @@
             font-size: 1.1rem;
             margin-bottom: 2.5rem;
             max-width: 450px;
+            color: #333;
         }
 
         .features-container {
@@ -130,7 +140,6 @@
 
         .feature-box h4 {
             margin-bottom: 0.5rem;
-            font-size: 1.1rem;
             font-family: 'Inter', sans-serif;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -145,6 +154,7 @@
         .feature-box ul li::before {
             content: '•';
             margin-right: 8px;
+            color: var(--accent-green);
         }
 
         .hero-image-container {
@@ -159,7 +169,7 @@
             border-radius: 20px;
         }
 
-        /* 3. Services Navigation Tabs */
+        /* Services Navigation Tabs */
         .services-nav {
             padding: 3rem 5%;
             display: flex;
@@ -182,7 +192,7 @@
             color: var(--accent-green);
         }
 
-        /* Container for remaining content */
+        /* Main Elements Container */
         .main-container {
             padding: 0 5% 5rem 5%;
             display: flex;
@@ -190,7 +200,7 @@
             gap: 2rem;
         }
 
-        /* 4. The Experience Cards */
+        /* Experience Split Cards */
         .experience-split {
             display: flex;
             gap: 2rem;
@@ -234,16 +244,17 @@
         }
 
         .selection-menu select {
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 20px;
             border: 1px solid rgba(0,0,0,0.1);
-            background: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.7);
             font-family: inherit;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             outline: none;
+            font-size: 0.95rem;
         }
 
-        /* 5. Service Grid */
+        /* Mini Service Grid */
         .service-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -283,7 +294,7 @@
             gap: 5px;
         }
 
-        /* 6. Large CTA Section */
+        /* Large CTA Section */
         .cta-section {
             background-color: var(--bg-hero);
             border-radius: var(--card-radius);
@@ -308,28 +319,298 @@
             color: var(--text-dark);
         }
 
-        /* Mobile Responsiveness */
+        /* --- PREMIUM CONCIERGE MODAL WORKFLOW --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 26, 26, 0.4);
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-content {
+            background-color: var(--bg-page);
+            border-radius: var(--card-radius);
+            width: 95%;
+            max-width: 900px;
+            height: 80vh;
+            max-height: 700px;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            overflow: hidden;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.15);
+            position: relative;
+            transform: scale(0.95) translateY(10px);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Concierge Left Body (Interactive Form Steps) */
+        .concierge-body {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            background: linear-gradient(135deg, var(--premium-pink) 0%, #ffffff 100%);
+        }
+
+        .step-header h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .step-header p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Progress Dots Indicators */
+        .progress-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: var(--accent-green);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* Multi-step Container Toggle states */
+        .form-step {
+            display: none;
+        }
+
+        .form-step.active {
+            display: block;
+            animation: fadeInStep 0.4s ease forwards;
+        }
+
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background-color: rgba(255,255,255,0.8);
+            color: var(--text-dark);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-green);
+            background-color: #fff;
+            box-shadow: 0 4px 12px rgba(90, 130, 94, 0.05);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        /* Concierge Navigation Control Footer */
+        .concierge-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(0,0,0,0.06);
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            color: var(--text-dark);
+        }
+
+        /* Right Side Live Summary Panel */
+        .concierge-summary-panel {
+            background-color: #fff;
+            border-left: 1px solid rgba(0,0,0,0.06);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .close-modal-container {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+        }
+
+        .close-modal-btn {
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #aaa;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .close-modal-btn:hover {
+            color: var(--text-dark);
+        }
+
+        .summary-title {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .live-receipt {
+            border-top: 1px dashed rgba(0,0,0,0.1);
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            padding: 1.5rem 0;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .receipt-empty-state {
+            color: #bbb;
+            font-style: italic;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        .receipt-data h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .receipt-data .category {
+            font-size: 0.85rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.95rem;
+            margin-bottom: 0.6rem;
+            color: var(--text-light);
+        }
+
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+
+        .receipt-total span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .receipt-total .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent-green);
+        }
+
+        .summary-footer-notice {
+            font-size: 0.8rem;
+            color: #999;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Mobile Viewports */
         @media (max-width: 992px) {
             .hero-content h1 { font-size: 3.5rem; }
             .card-text-right h2 { font-size: 2.5rem; }
             .experience-split { flex-direction: column; }
             .card-image-left { min-height: 300px; }
+            .modal-content { grid-template-columns: 1fr; height: 90vh; max-height: none; }
+            .concierge-summary-panel { display: none; }
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; } /* Simple hide for mobile, would need JS for hamburger */
-            
-            /* Crucial: Image comes first on mobile for Hero */
+            .nav-links { display: none; }
             .hero { flex-direction: column; }
             .hero-image-container { order: -1; height: 350px; flex: none; }
             .hero-content { order: 0; padding: 2rem 5%; }
-            
             .hero-content h1 { font-size: 2.8rem; }
             .features-container { flex-direction: column; }
-            
             .card-text-right { padding: 2rem; }
             .cta-section { padding: 3rem 5%; }
             .cta-section h2 { font-size: 2.5rem; }
+            .concierge-body { padding: 2rem 1.5rem; }
+            .form-row { grid-template-columns: 1fr; gap: 0; }
         }
     </style>
 </head>
@@ -338,12 +619,12 @@
     <header>
         <div class="brand">Ginnys Spa</div>
         <nav class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Our Premises</a>
-            <a href="#">Our Services</a>
-            <a href="#">Gallery</a>
+            <a href="index.html">Home</a>
+            <a href="premise.html">Our Premises</a>
+            <a href="services.html">Our Services</a>
+            <a href="gallery.html">Gallery</a>
         </nav>
-        <button class="btn">Book Session</button>
+        <button class="btn show-concierge-btn">Book Session</button>
     </header>
 
     <section class="hero">
@@ -371,7 +652,7 @@
             </div>
             
             <div style="margin-top: 2.5rem;">
-                <button class="btn">Book Session Now</button>
+                <button class="btn show-concierge-btn">Book Session Now</button>
             </div>
         </div>
         
@@ -398,14 +679,14 @@
                 <p>It’s more than a massage; it’s the smell of fresh lavender, the weight of the world leaving your shoulders, and the healing touch of silence.</p>
                 
                 <div class="selection-menu">
-                    <select>
-                        <option>Mini Massage</option>
-                        <option>Solo Massage</option>
-                        <option>Couple Massage</option>
+                    <select id="directMassageSelect">
+                        <option value="Mini Massage">Mini Massage</option>
+                        <option value="Solo Massage">Solo Massage</option>
+                        <option value="Couple Massage">Couple Massage</option>
                     </select>
                 </div>
                 <div>
-                    <button class="btn">Select Preference</button>
+                    <button class="btn show-concierge-btn">Select Preference</button>
                 </div>
             </div>
         </div>
@@ -415,7 +696,7 @@
                 <h2>Refined Crown & Care</h2>
                 <p>From the rhythmic clip of the shears to the soothing scalp treatment, our hair and nail station is designed for those who value detail and dignity.</p>
                 <div>
-                    <button class="btn">View Styles</button>
+                    <button class="btn show-concierge-btn">View Styles</button>
                 </div>
             </div>
             <div class="card-image-left">
@@ -427,31 +708,193 @@
             <div class="mini-card">
                 <h3>Aromatherapy</h3>
                 <p>Essential oils for the soul.</p>
-                <a href="#" class="explore-link">Explore ➔</a>
+                <a href="#" class="explore-link show-concierge-btn">Explore ➔</a>
             </div>
             <div class="mini-card">
                 <h3>Skin Rituals</h3>
                 <p>Deep cleansing & healthy glow.</p>
-                <a href="#" class="explore-link">Explore ➔</a>
+                <a href="#" class="explore-link show-concierge-btn">Explore ➔</a>
             </div>
             <div class="mini-card">
                 <h3>The Barbery</h3>
                 <p>Precision cuts & hot towels.</p>
-                <a href="#" class="explore-link">Explore ➔</a>
+                <a href="#" class="explore-link show-concierge-btn">Explore ➔</a>
             </div>
             <div class="mini-card">
                 <h3>Nail Spa</h3>
                 <p>Luxury Mani-Pedi sets.</p>
-                <a href="#" class="explore-link">Explore ➔</a>
+                <a href="#" class="explore-link show-concierge-btn">Explore ➔</a>
             </div>
         </div>
 
         <div class="cta-section">
             <h2>Switch Off The World.</h2>
             <p>Our premises are tucked away from the city noise, ensuring your session is wrapped in absolute quiet. No traffic, no rush—just the gentle hum of serenity.</p>
-            <button class="btn">Secure Your Peace of Mind</button>
+            <button class="btn show-concierge-btn">Secure Your Peace of Mind</button>
         </div>
     </div>
 
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            
+            <div class="concierge-body">
+                <form id="spaBookingForm">
+                    
+                    <div class="form-step active" data-step="1">
+                        <div class="step-header">
+                            <h2>Select Treatment</h2>
+                            <p>Step 1 of 3 — Choose your custom luxury therapy window.</p>
+                        </div>
+                        <div class="progress-dots">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="spaService">Treatment Menu</label>
+                            <select id="spaService" class="form-control" required>
+                                <option value="" disabled selected>Select a treatment...</option>
+                                
+                                <optgroup label="Massages">
+                                    <option value="Mini Massage" data-price="Ksh 3,500" data-duration="45 Mins">Mini Massage — Ksh 3,500.00</option>
+                                    <option value="Solo Massage" data-price="Ksh 5,000" data-duration="60 Mins">Solo Massage — Ksh 5,000.00</option>
+                                    <option value="Couple Massage" data-price="Ksh 9,500" data-duration="90 Mins">Couple Massage — Ksh 9,500.00</option>
+                                </optgroup>
+
+                                <optgroup label="Barber Services">
+                                    <option value="Mens Haircut" data-price="Ksh 800" data-duration="30 Mins">Mens Haircut — Ksh 800.00</option>
+                                    <option value="Mens Haircut & Dye" data-price="Ksh 2,000" data-duration="60 Mins">Mens Haircut & Dye — Ksh 2,000.00</option>
+                                    <option value="Caucasian Mens Haircut" data-price="Ksh 1,500" data-duration="45 Mins">Caucasian Mens Haircut — Ksh 1,500.00</option>
+                                    <option value="Beard Trim Only" data-price="Ksh 400" data-duration="20 Mins">Beard Trim Only — Ksh 400.00</option>
+                                    <option value="Beard Cut & Tint" data-price="Ksh 1,000" data-duration="40 Mins">Beard Cut & Tint — Ksh 1,000.00</option>
+                                    <option value="Hair Line Only" data-price="Ksh 500" data-duration="15 Mins">Hair Line Only — Ksh 500.00</option>
+                                    <option value="Hair Cut for Children" data-price="Ksh 500" data-duration="30 Mins">Hair Cut for Children — Ksh 500.00</option>
+                                    <option value="Colored Hair Dye" data-price="Ksh 3,000" data-duration="90 Mins">Colored Hair Dye — Ksh 3,000.00</option>
+                                    <option value="Grey Hair reduction | Black Dye" data-price="Ksh 1,000" data-duration="45 Mins">Grey Hair Reduction — Ksh 1,000.00</option>
+                                    <option value="Ladies Cut" data-price="Ksh 600" data-duration="30 Mins">Ladies Cut — Ksh 600.00</option>
+                                    <option value="Ladies Fresh Cut" data-price="Ksh 1,500" data-duration="50 Mins">Ladies Fresh Cut — Ksh 1,500.00</option>
+                                </optgroup>
+
+                                <optgroup label="Hair Care & Braiding">
+                                    <option value="Undo Lines" data-price="Ksh 500" data-duration="30 Mins">Undo Lines — Ksh 500.00</option>
+                                    <option value="Undo Medium Braids" data-price="Ksh 700" data-duration="45 Mins">Undo Medium Braids — Ksh 700.00</option>
+                                    <option value="Undo Small Braids" data-price="Ksh 1,000" data-duration="60 Mins">Undo Small Braids — Ksh 1,000.00</option>
+                                    <option value="Wash & Blow Dry | Set" data-price="Ksh 1,000" data-duration="45 Mins">Wash & Blow Dry | Set — Ksh 1,000.00</option>
+                                    <option value="Flat Iron" data-price="Ksh 1,000" data-duration="45 Mins">Flat Iron — Ksh 1,000.00</option>
+                                    <option value="Edge Trim" data-price="Ksh 1,000" data-duration="20 Mins">Edge Trim — Ksh 1,000.00</option>
+                                    <option value="Braid Twist" data-price="Ksh 3,500" data-duration="180 Mins">Braid Twist [Volume Dependent] — Ksh 3,500.00</option>
+                                    <option value="Knotless Braids" data-price="Ksh 3,000" data-duration="240 Mins">Knotless Braids — Ksh 3,000.00</option>
+                                    <option value="Knotless Goddess Braids" data-price="Ksh 3,500" data-duration="240 Mins">Knotless Goddess Braids — Ksh 3,500.00</option>
+                                    <option value="Natural Hair Mini Twist" data-price="Ksh 2,000" data-duration="120 Mins">Natural Hair Mini Twist — Ksh 2,000.00</option>
+                                    <option value="Small Box Braids" data-price="Ksh 3,500" data-duration="240 Mins">Small Box Braids — Ksh 3,500.00</option>
+                                    <option value="Medium Box Braids" data-price="Ksh 3,000" data-duration="180 Mins">Medium Box Braids — Ksh 3,000.00</option>
+                                    <option value="Large Box Braids" data-price="Ksh 2,500" data-duration="150 Mins">Large Box Braids — Ksh 2,500.00</option>
+                                    <option value="Drop Lines with Braids" data-price="Ksh 2,500" data-duration="120 Mins">Drop Lines with Braids — Ksh 2,500.00</option>
+                                    <option value="Lines & Cornrows" data-price="Ksh 1,000" data-duration="60 Mins">Lines & Cornrows — Ksh 1,000.00</option>
+                                    <option value="Twist Outs" data-price="Ksh 2,000" data-duration="90 Mins">Twist Outs — Ksh 2,000.00</option>
+                                    <option value="Ghanian Lines" data-price="Ksh 2,000" data-duration="120 Mins">Ghanian Lines — Ksh 2,000.00</option>
+                                    <option value="Passion & Spring" data-price="Ksh 2,500" data-duration="150 Mins">Passion & Spring — Ksh 2,500.00</option>
+                                </optgroup>
+
+                                <optgroup label="Relaxing & Texturizing">
+                                    <option value="Mizani Relaxer" data-price="Ksh 8,000" data-duration="90 Mins">Mizani Relaxer + Treatment — Ksh 8,000.00</option>
+                                    <option value="Mizani Retouch" data-price="Ksh 8,000" data-duration="90 Mins">Mizani Retouch + Treatment — Ksh 8,000.00</option>
+                                    <option value="Mizani Fresh retouch" data-price="Ksh 8,500" data-duration="90 Mins">Mizani Fresh Retouch — Ksh 8,500.00</option>
+                                    <option value="Dark & Lovely Relax" data-price="Ksh 3,500" data-duration="75 Mins">Dark & Lovely Relax — Ksh 3,500.00</option>
+                                    <option value="Beautiful Beginning Relax" data-price="Ksh 3,000" data-duration="60 Mins">Beautiful Beginning Relax — Ksh 3,000.00</option>
+                                    <option value="Mega Growth Relax" data-price="Ksh 3,000" data-duration="60 Mins">Mega Growth Relax — Ksh 3,000.00</option>
+                                </optgroup>
+
+                                <optgroup label="Hair Treatments">
+                                    <option value="Mizani Treatment" data-price="Ksh 3,500" data-duration="60 Mins">Mizani Treatment — Ksh 3,500.00</option>
+                                    <option value="Mizani Miracle Leave in" data-price="Ksh 2,000" data-duration="45 Mins">Mizani Miracle Leave-In — Ksh 2,000.00</option>
+                                    <option value="Mikalla Treatment" data-price="Ksh 3,000" data-duration="60 Mins">Mikalla Treatment — Ksh 3,000.00</option>
+                                    <option value="Leave in Treatment" data-price="Ksh 1,500" data-duration="30 Mins">Leave-In Treatment — Ksh 1,500.00</option>
+                                    <option value="L'Oreal Absolute M. Treatment" data-price="Ksh 4,000" data-duration="60 Mins">L'Oreal Absolute M. — Ksh 4,000.00</option>
+                                    <option value="L'Oreal Scalp Advanced" data-price="Ksh 3,500" data-duration="60 Mins">L'Oreal Scalp Advanced — Ksh 3,500.00</option>
+                                    <option value="Cantu Treatment" data-price="Ksh 3,000" data-duration="45 Mins">Cantu Treatment — Ksh 3,000.00</option>
+                                    <option value="Auntie Jackies" data-price="Ksh 3,000" data-duration="45 Mins">Auntie Jackies — Ksh 3,000.00</option>
+                                    <option value="African Pride" data-price="Ksh 3,000" data-duration="45 Mins">African Pride — Ksh 3,000.00</option>
+                                    <option value="Crème of Nature" data-price="Ksh 3,000" data-duration="45 Mins">Crème of Nature — Ksh 3,000.00</option>
+                                </optgroup>
+
+                                <optgroup label="Deep Treatment">
+                                    <option value="Keratin" data-price="Ksh 3,000" data-duration="90 Mins">Keratin Treatment — Ksh 3,000.00</option>
+                                    <option value="Hair Mayonnaise" data-price="Ksh 3,000" data-duration="60 Mins">Hair Mayonnaise — Ksh 3,000.00</option>
+                                    <option value="Genus Keratin" data-price="Ksh 2,500" data-duration="60 Mins">Genus Keratin — Ksh 2,500.00</option>
+                                    <option value="Genus Garlic" data-price="Ksh 2,000" data-duration="60 Mins">Genus Garlic Treatment — Ksh 2,000.00</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="2">
+                        <div class="step-header">
+                            <h2>Guest Particulars</h2>
+                            <p>Step 2 of 3 — Provide your contact details for your private profile allocation.</p>
+                        </div>
+                        <div class="progress-dots">
+                            <div class="dot"></div>
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">Contact Phone</label>
+                            <input type="tel" id="phoneNumber" class="form-control" placeholder="e.g. 0712345678" required disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-step" data-step="3">
+                        <div class="step-header">
+                            <h2>Reserve Window</h2>
+                            <p>Step 3 of 3 — Select your preferred arrival timeframe.</p>
+                        </div>
+                        <div class="progress-dots">
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                            <div class="dot active"></div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="bookingDate">Appointment Date</label>
+                                <input type="date" id="bookingDate" class="form-control" required disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="bookingTime">Preferred Time</label>
+                                <input type="time" id="bookingTime" class="form-control" required disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="concierge-controls">
+                        <button type="button" class="btn-secondary" id="prevBtn" style="visibility: hidden;">➔ Return</button>
+                        <button type="button" class="btn" id="nextBtn">Continue</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="concierge-summary-panel">
+                <div class="close-modal-container">
+                    <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+                </div>
+                <div>
+                    <div class="summary-title">Reservation Details</div>
+                    <div class="live-receipt" id="liveReceipt">
+                        <div class="receipt-empty-state">No therapy selected yet. Your summary itinerary updates dynamically here.</div>
+                    </div>
+                </div>
+                <div class="summary-footer-notice">
+                    Westlands, Nairobi • Valet parking & complementary herbal spa teas provided during registration.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/booking.js"></script>
 </body>
 </html>

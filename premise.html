@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Premises | Ginnys Spa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-hero: #e8d0bd; 
+            --bg-page: #f9ede4; /* Soft peach/tan background added here */
+            --accent-green: #5a825e; 
+            --accent-light-green: #c0dec8; 
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --card-radius: 24px;
+            --premium-pink: #fbe5e7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-block;
+            box-shadow: 0 4px 12px rgba(90, 130, 94, 0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(90, 130, 94, 0.35);
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(249, 237, 228, 0.9);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+            transition: color 0.2s;
+        }
+
+        /* Minimal Cover Header */
+        .premises-hero {
+            text-align: center;
+            padding: 8rem 5% 5rem 5%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .premises-hero span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-green);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .premises-hero h1 {
+            font-size: 4rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .premises-hero p {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            font-style: italic;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Editorial Spatial Journey Layout */
+        .journey-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 5% 8rem 5%;
+        }
+
+        .journey-row {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            margin-bottom: 8rem;
+        }
+
+        .journey-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .spatial-image-wrapper {
+            flex: 1.1;
+            height: 500px;
+            border-radius: var(--card-radius);
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+            position: relative;
+        }
+
+        .spatial-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .spatial-image-wrapper:hover img {
+            transform: scale(1.03);
+        }
+
+        .spatial-text-block {
+            flex: 0.9;
+            /* Pinkish gradient card style applied to all writing sections */
+            background: linear-gradient(135deg, var(--premium-pink) 0%, #ffffff 100%);
+            padding: 3rem;
+            border-radius: var(--card-radius);
+            border-left: 3px solid var(--bg-hero);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .spatial-text-block .room-number {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-green);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .spatial-text-block h2 {
+            font-size: 2.8rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .spatial-text-block p {
+            color: var(--text-light);
+            font-size: 1.05rem;
+        }
+
+        /* Removing the specific styling for the second card so it inherits the general one above */
+        .ambient-card-accent {
+            background: none;
+            padding: 0;
+            border: none;
+        }
+
+        /* Spatial Atmosphere Callout Panel */
+        .atmosphere-panel {
+            background-color: #f0eae4;
+            border-radius: var(--card-radius);
+            padding: 5rem;
+            text-align: center;
+            margin-top: 4rem;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.01);
+        }
+
+        .atmosphere-panel h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .atmosphere-panel p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .journey-row, .journey-row:nth-child(even) {
+                flex-direction: column;
+                gap: 2.5rem;
+                margin-bottom: 6rem;
+            }
+            .spatial-image-wrapper {
+                width: 100%;
+                height: 380px;
+            }
+            .premises-hero h1 { font-size: 3rem; }
+            .spatial-text-block h2 { font-size: 2.2rem; }
+            .atmosphere-panel { padding: 3rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">Ginnys Spa</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="premises.html" style="color: var(--accent-green); font-weight: 600;">Our Premises</a>
+            <a href="service.html">Our Services</a>
+            <a href="#">Gallery</a>
+        </nav>
+        <button class="btn show-concierge-btn">Book Session</button>
+    </header>
+
+    <div class="premises-hero">
+        <span>The Sanctuary</span>
+        <h1>A Space Formed Around Silence</h1>
+        <p>Located in the heart of Westlands, Nairobi—designed completely isolated from the outside rush.</p>
+    </div>
+
+    <div class="journey-container">
+
+        <div class="journey-row">
+            <div class="spatial-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Luxury Spa Reception and Foyer Lounge Area">
+            </div>
+            <div class="spatial-text-block">
+                <span class="room-number">I. The Arrival</span>
+                <h2>The Golden Hour Foyer</h2>
+                <p>Your transition out of the city starts immediately. Soft amber lighting, low acoustics, and architectural curves slow your step down right at the door. Every guest is welcomed with organic linen slippers and chilled white-tea extractions before their treatment window begins.</p>
+            </div>
+        </div>
+
+        <div class="journey-row">
+            <div class="spatial-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Premium Salon Therapy Washing Basin Suites">
+            </div>
+            <div class="spatial-text-block">
+                <div class="ambient-card-accent">
+                    <span class="room-number">II. Deep Washing</span>
+                    <h2>The Hydro-Therapy Basin Suites</h2>
+                    <p>Designed with deep backwash ergonomics and soft waterfall spouts. This chamber is kept in partial dimness, allowing you to completely switch off while raw botanical oils, steam treatments, and scalp restoration rituals revitalize your hair structure.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="journey-row">
+            <div class="spatial-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Private Luxury Therapy and Massage Rooms">
+            </div>
+            <div class="spatial-text-block">
+                <span class="room-number">III. Pure Stillness</span>
+                <h2>Private Massage Sanctuaries</h2>
+                <p>Our completely soundproof suites feature custom heated dynamic memory foam tables, automated temperature tuning, and targeted environmental misting. Wrapped entirely in raw cedar accents and soft textures to eliminate cognitive distractions.</p>
+            </div>
+        </div>
+
+        <div class="atmosphere-panel">
+            <h3>The Architecture of Peace</h3>
+            <p>We strictly enforce a no-phone protocol across our primary inner chambers to preserve soft acoustic fields. Air filtrations are laced natively with cold-pressed lavender and frankincense micro-particles to soothe neural stress during your window.</p>
+        </div>
+
+    </div>
+
+    <!-- Link to the JS file -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lookbook | GINNYS SPAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-hero: #e8d0bd; 
+            --bg-page: #f9ede4; 
+            --accent-green: #5a825e; 
+            --text-dark: #1a1a1a;
+            --text-light: #666;
+            --premium-pink: #fbe5e7;
+            /* Premium Dark Brown Theme Elements */
+            --dark-brown: #2b1e16;
+            --light-espresso: #3d2c21;
+            --soft-gold: #dfc3af;
+            /* Large Editorial Scale Dimensions */
+            --book-width: 580px; 
+            --book-height: 720px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        header {
+            background-color: rgba(249, 237, 228, 0.9);
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            backdrop-filter: blur(10px);
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .btn {
+            background-color: var(--accent-green);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(90, 130, 94, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(90, 130, 94, 0.35);
+        }
+
+        /* Lookbook Outer Section */
+        .book-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 0 4rem 0;
+        }
+
+        /* Centered Book Container Wrapper */
+        .book-container {
+            width: calc(var(--book-width) * 2);
+            height: var(--book-height);
+            position: relative;
+            perspective: 3000px;
+            margin: 0 auto; 
+        }
+
+        .book {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* Page Component Layers */
+        .page {
+            width: var(--book-width);
+            height: var(--book-height);
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 0.9s cubic-bezier(0.25, 1, 0.4, 1);
+            cursor: pointer;
+        }
+
+        /* Page Sides Base Configurations */
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+            background-color: #fff;
+            padding: 4.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.015);
+        }
+
+        .back {
+            transform: rotateY(180deg);
+            background-color: #faf8f5;
+            border-right: 1px solid rgba(0,0,0,0.04);
+        }
+
+        /* Spine Shading Effect */
+        .front::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.06), rgba(0,0,0,0));
+            pointer-events: none;
+        }
+
+        .back::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 30px;
+            height: 100%;
+            background: linear-gradient(to left, rgba(0,0,0,0.06), rgba(0,0,0,0));
+            pointer-events: none;
+        }
+
+        /* Premium Dark Espresso Cover Custom Design */
+        .cover-front {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-espresso) 100%);
+            border-left: 12px solid var(--soft-gold);
+            border-radius: 0 16px 16px 0;
+            text-align: center;
+            align-items: center;
+        }
+
+        .cover-front h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            letter-spacing: 4px;
+            color: var(--soft-gold);
+        }
+
+        .cover-front p {
+            font-size: 0.9rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: #fff;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cover-back {
+            background: linear-gradient(135deg, var(--dark-brown) 0%, var(--light-espresso) 100%);
+            border-radius: 16px 0 0 16px;
+            border-right: 12px solid var(--soft-gold);
+            border-left: none;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* Inside Text Layout Rules */
+        .text-page {
+            justify-content: center;
+            padding: 4rem 4.5rem;
+        }
+
+        .text-page .chapter {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .text-page h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1.25;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            color: var(--text-dark);
+        }
+
+        .text-page p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Full Frame Image/Video Containers */
+        .media-page {
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            background-color: #1f1a17;
+        }
+
+        .media-page img, .media-page video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 3D Page Turned State */
+        .page.flipped {
+            transform: rotateY(-180deg);
+        }
+
+        /* Controls below lookbook */
+        .book-controls {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 2.5rem;
+            align-items: center;
+            z-index: 50;
+        }
+
+        .control-btn {
+            background: none;
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .control-btn:hover {
+            background-color: var(--accent-green);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        /* Fluid Adaptability Breakpoints for Smaller Displays */
+        @media (max-width: 1220px) {
+            .book-container { transform: scale(0.8); margin: -4rem 0; }
+        }
+
+        @media (max-width: 980px) {
+            .book-container { transform: scale(0.65); margin: -8rem 0; }
+        }
+
+        @media (max-width: 768px) {
+            .book-section { padding: 1rem; }
+            .book-container {
+                width: 100%;
+                max-width: var(--book-width);
+                height: auto;
+                transform: none;
+                margin: 0;
+            }
+            .book { display: flex; flex-direction: column; gap: 3rem; transform-style: flat; }
+            .page { position: relative; width: 100%; height: auto; transform: none !important; }
+            .front, .back { position: relative; width: 100%; height: auto; min-height: 480px; padding: 3rem 1.5rem; transform: none !important; backface-visibility: visible; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+            .back { border-right: none; background-color: #ffffff; }
+            .media-page { height: 400px; }
+            .book-controls { display: none; }
+            .front::after, .back::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand">GINNYS SPAR</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="premise.html">Our Premises</a>
+            <a href="services.html">Our Services</a>
+            <a href="gallery.html" style="color: var(--accent-green); font-weight: 600;">Gallery</a>
+        </nav>
+        <button class="btn show-concierge-btn">Book Session</button>
+    </header>
+
+    <div class="book-section">
+        <div class="book-container">
+            <div class="book" id="spaBook">
+
+                <div class="page" id="sheet5" style="z-index: 1;">
+                    <div class="front media-page">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1000&q=80" alt="Luxury manicure and nail spa treatment">
+                    </div>
+                    <div class="back cover-front cover-back">
+                        <h2>GINNYS SPAR</h2>
+                        <p style="margin-top: 0.5rem; letter-spacing: 2px; color: var(--soft-gold); font-weight: 500;">Your Haven Awaits</p>
+                        <p style="margin: 2rem auto 0 auto; letter-spacing: 0.5px; color: rgba(255,255,255,0.8); text-transform: none; font-style: italic; font-family: 'Playfair Display', serif; font-size: 1.3rem; max-width: 380px; line-height: 1.6;">
+                            "In the heart of stillness, the body remembers how to mend."
+                        </p>
+                        <button class="btn show-concierge-btn" style="margin-top: 3rem; padding: 16px 44px; font-size: 1rem; letter-spacing: 1px; text-transform: uppercase; background-color: var(--soft-gold); color: var(--dark-brown); font-weight: 600;">Experience Now</button>
+                    </div>
+                </div>
+
+                <div class="page" id="sheet4" style="z-index: 2;">
+                    <div class="front media-page">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1000&q=80" alt="Precision master barber cut at Ginny's Spa">
+                    </div>
+                    <div class="back text-page">
+                        <span class="chapter">Chapter IV: Refined Finishes</span>
+                        <h3>The Nail Spa</h3>
+                        <p>A meticulous grooming experience built on pure hygiene and symmetry. From refreshing, restorative botanical foot soaks to custom cuticle nourishment and non-toxic polish selections, our specialized nail station balances structural care with long-lasting aesthetic excellence.</p>
+                    </div>
+                </div>
+
+                <div class="page" id="sheet3" style="z-index: 3;">
+                    <div class="front media-page">
+                        <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=1000&q=80" alt="Advanced skin facial therapy at Ginny's Spa">
+                    </div>
+                    <div class="back text-page">
+                        <span class="chapter">Chapter III: Grooming & Linens</span>
+                        <h3>The Barbery</h3>
+                        <p>Crafting lines with complete dignity and modern execution. Our master grooming suites merge classic hot-towel skin conditioning with advanced precision cutting, beard tinting, and scalp relief manipulation to ensure every client walks away looking razor sharp and completely refreshed.</p>
+                    </div>
+                </div>
+
+                <div class="page" id="sheet2" style="z-index: 4;">
+                    <div class="front media-page">
+                        <img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=1000&q=80" alt="Raw aromatherapy extracts and botanical seeds">
+                    </div>
+                    <div class="back text-page">
+                        <span class="chapter">Chapter II: Dermal Radiance</span>
+                        <h3>Skin Rituals</h3>
+                        <p>Advanced dermal nutrition that targets cellular repair. Utilizing premium, clean formulas, micro-exfoliating diamond arrays, and specialized manual contouring, our skin sessions focus deeply on drawing out toxins, boosting natural vascularity, and restoring full biological clarity.</p>
+                    </div>
+                </div>
+
+                <div class="page" id="sheet1" style="z-index: 5;">
+                    <div class="front cover-front">
+                        <h2>GINNYS SPAR</h2>
+                        <p>The Exhibition Lookbook</p>
+                        <span style="font-size: 0.85rem; color: var(--soft-gold); font-weight: 500; font-style: italic; letter-spacing: 1px;">Click Cover to Open</span>
+                    </div>
+                    <div class="back text-page">
+                        <span class="chapter">Chapter I: Botanical Alchemy</span>
+                        <h3>Aromatherapy</h3>
+                        <p>Every extract integrated into your sequence is entirely unrefined and alive. We slow-press pristine, single-origin botanical essences—ranging from grounding sacred frankincense resins to soothing blue chamomile oils—gently heating them to relax superficial muscle layers and calm overactive neural networks.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="book-controls">
+            <button class="control-btn" id="prevBtn">‹</button>
+            <span style="font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; color: var(--text-light);" id="pageIndicator">Cover</span>
+            <button class="control-btn" id="nextBtn">›</button>
+        </div>
+    </div>
+
+    <script>
+        const sheets = [
+            document.getElementById('sheet1'),
+            document.getElementById('sheet2'),
+            document.getElementById('sheet3'),
+            document.getElementById('sheet4'),
+            document.getElementById('sheet5')
+        ];
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicator = document.getElementById('pageIndicator');
+        
+        let currentSpread = 0; 
+        const maxSpread = sheets.length;
+
+        function updateBookState() {
+            if (currentSpread === 0) {
+                indicator.innerText = "Cover";
+            } else if (currentSpread === maxSpread) {
+                indicator.innerText = "Back Cover";
+            } else {
+                indicator.innerText = `Spread ${currentSpread} of ${maxSpread - 1}`;
+            }
+
+            sheets.forEach((sheet, idx) => {
+                if (idx < currentSpread) {
+                    sheet.classList.add('flipped');
+                    sheet.style.zIndex = idx + 1; 
+                } else {
+                    sheet.classList.remove('flipped');
+                    sheet.style.zIndex = maxSpread - idx; 
+                }
+            });
+        }
+
+        function goNext() {
+            if (currentSpread < maxSpread) {
+                currentSpread++;
+                updateBookState();
+            }
+        }
+
+        function goPrev() {
+            if (currentSpread > 0) {
+                currentSpread--;
+                updateBookState();
+            }
+        }
+
+        nextBtn.addEventListener('click', goNext);
+        prevBtn.addEventListener('click', goPrev);
+
+        sheets.forEach((sheet) => {
+            sheet.addEventListener('click', (e) => {
+                if(e.target.tagName === 'BUTTON') return;
+                if (sheet.classList.contains('flipped')) {
+                    goPrev();
+                } else {
+                    goNext();
+                }
+            });
+        });
+
+        // Event script wiring to bind the booking triggers while inside gallery context
+        document.querySelectorAll('.show-concierge-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Avoid triggering flip book logic checks accidentally
+                
+                // If you are using the unified booking drawer logic we built earlier:
+                if (typeof toggleDrawer === "function") {
+                    toggleDrawer();
+                } else {
+                    // Fail-safe alert fallback hook until the booking js is fully integrated
+                    alert("Opening the interactive booking experience window...");
+                }
+            });
+        });
+
+        updateBookState();
+    </script>
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="booking-drawer" id="bookingDrawer">
+        </div>
+        <script src="js/gallery.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>
